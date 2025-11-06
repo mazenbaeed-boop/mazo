@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mazen — Web Developer & Designer</title>
+  <meta name="description" content="مطور ومصمم مواقع — بورتفوليو مازن. مواقع سريعة الاستجابة، تصميم عصري، واجهات تفاعلية." />
+  <style>
+    /* Reset */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;line-height:1.5;background:#0f0f10;color:#e9e6e3}
+
+    /* Theme colors */
+    :root{
+      --bg:#0f0f10;
+      --card:#151516;
+      --muted:#bdb8b0;
+      --gold:#D4AF37; /* ذهبي */
+      --accent:var(--gold);
+      --glass: rgba(255,255,255,0.04);
+    }
+
+    /* Layout */
+    .container{max-width:1100px;margin:0 auto;padding:28px}
+    header{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:54px;height:54px;border-radius:10px;background:linear-gradient(135deg,var(--gold),#f1de9a);display:flex;align-items:center;justify-content:center;color:#111;font-weight:700}
+    .brand h1{font-size:18px}
+    nav ul{display:flex;gap:12px;list-style:none}
+    nav a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:8px}
+    nav a:hover{color:#fff;background:var(--glass)}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:30px;align-items:center;padding:36px 0}
+    .hero-left h2{font-size:28px;margin-bottom:8px}
+    .hero-left p{color:var(--muted);margin-bottom:18px}
+    .cta{display:flex;gap:12px}
+    .btn{background:transparent;border:1px solid var(--gold);color:var(--gold);padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:600}
+    .btn.primary{background:linear-gradient(90deg,rgba(212,175,55,0.14),rgba(212,175,55,0.06));color:#fff}
+
+    /* Card */
+    .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:18px;border-radius:14px;box-shadow:0 6px 20px rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.02)}
+
+    /* About */
+    .about{display:flex;gap:24px;margin:28px 0}
+    .avatar{width:180px;height:180px;border-radius:14px;background:linear-gradient(135deg,#2b2b2b, #111);display:flex;align-items:center;justify-content:center;font-size:48px;color:var(--gold);font-weight:700}
+    .about p{color:var(--muted)}
+
+    /* Skills */
+    .skills{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+    .skill{background:var(--card);padding:12px;border-radius:10px}
+    .skill h4{margin-bottom:8px}
+    .bar{height:8px;background:#0b0b0b;border-radius:8px;overflow:hidden}
+    .bar > span{display:block;height:100%;background:linear-gradient(90deg,var(--gold),#caa84f)}
+
+    /* Projects */
+    .projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:14px}
+    .project{position:relative;border-radius:12px;overflow:hidden}
+    .project img{width:100%;height:180px;object-fit:cover;display:block}
+    .project .meta{position:absolute;left:0;right:0;bottom:0;padding:12px;background:linear-gradient(180deg,transparent,rgba(0,0,0,0.6));color:#fff}
+
+    /* Contact */
+    .contact-form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .contact-form input,.contact-form textarea{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:12px;border-radius:10px;color:#fff}
+    .contact-form textarea{grid-column:1/-1;min-height:120px}
+
+    /* Footer */
+    footer{padding:28px 0;text-align:center;color:var(--muted)}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr}
+      .projects-grid{grid-template-columns:1fr}
+      .skills{grid-template-columns:repeat(2,1fr)}
+      .about{flex-direction:column;align-items:center;text-align:center}
+      nav ul{display:none}
+    }
+
+    @media (max-width:520px){
+      .skills{grid-template-columns:1fr}
+      .logo{width:46px;height:46px}
+      .avatar{width:140px;height:140px}
+      .container{padding:18px}
+    }
+
+    /* Small interactions */
+    .nav-toggle{display:none}
+    @media (max-width:980px){.nav-toggle{display:block;color:var(--muted);cursor:pointer}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">MZ</div>
+        <div>
+          <h1>مازن — Developer & Designer</h1>
+          <div style="color:var(--muted);font-size:12px">Full‑Stack • UI/UX • Performance</div>
+        </div>
+      </div>
+
+      <nav>
+        <span class="nav-toggle" onclick="toggleNav()">☰</span>
+        <ul id="navlist">
+          <li><a href="#home">الرئيسية</a></li>
+          <li><a href="#about">عنّي</a></li>
+          <li><a href="#skills">المهارات</a></li>
+          <li><a href="#projects">المشاريع</a></li>
+          <li><a href="#contact">تواصل</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <div class="hero-left">
+        <h2>أحوّل الأفكار إلى تجارب رقمية أنيقة.</h2>
+        <p>مطور ومصمم مواقع — أعمل على بناء واجهات حديثة، أداء سريع، وتجارب مستخدم واضحة. مهاراتي: HTML, CSS, JavaScript, React, Node.js.</p>
+        <div class="cta">
+          <a class="btn primary" href="#projects">عرض الأعمال</a>
+          <a class="btn" href="#contact">اطلب خدمة</a>
+        </div>
+
+        <div style="margin-top:18px" class="card">
+          <strong>خبرة:</strong> 3+ سنوات فى التطوير • <strong>الموقع:</strong> Responsive • <strong>التسليم:</strong> Deployment & Hosting
+        </div>
+      </div>
+
+      <aside class="card">
+        <div style="display:flex;flex-direction:column;gap:12px;align-items:center">
+          <div class="avatar">MZ</div>
+          <div style="text-align:center">
+            <h3 style="margin-bottom:6px">مازن</h3>
+            <div style="color:var(--muted);font-size:14px">مطور واجهات ومصمم تجربة مستخدم</div>
+          </div>
+          <div style="display:flex;gap:8px;margin-top:12px">
+            <a class="btn" href="#contact">تواصل الآن</a>
+            <a class="btn" href="#" onclick="downloadCV(event)">تحميل السيرة</a>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="about">
+      <div class="card" style="flex:1;padding:20px">
+        <h3>عنّي</h3>
+        <p style="margin-top:10px">أنا مازن، مطور ومصمم مواقع أتمتع بحس بصري قوي وشغف بالتصميم العملي. أعمل على إنشاء مواقع متجاوبة وسهلة الاستخدام مع اهتمام بتحسين الأداء وتجربة المستخدم.</p>
+        <ul style="margin-top:12px;color:var(--muted);list-style:none;padding-inline-start:0">
+          <li>• بناء واجهات تفاعلية</li>
+          <li>• ربط الواجهات بالخوادم</li>
+          <li>• تحسين أداء وسرعة التحميل</li>
+        </ul>
+      </div>
+
+      <div style="width:340px" class="card">
+        <h4>تفاصيل سريعة</h4>
+        <div style="margin-top:8px;color:var(--muted)"><strong>الاسم:</strong> مازن</div>
+        <div style="margin-top:6px;color:var(--muted)"><strong>الوظيفة:</strong> Full‑Stack Developer</div>
+        <div style="margin-top:6px;color:var(--muted)"><strong>الموقع:</strong> مصر</div>
+        <div style="margin-top:10px">
+          <a class="btn" href="#projects">أعمال سابقة</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="card">
+      <h3>المهارات</h3>
+      <div class="skills">
+        <div class="skill">
+          <h4>Frontend</h4>
+          <div style="color:var(--muted)">HTML / CSS / JavaScript / React / Tailwind</div>
+          <div style="margin-top:8px" class="bar"><span style="width:90%"></span></div>
+        </div>
+        <div class="skill">
+          <h4>Backend</h4>
+          <div style="color:var(--muted)">Node.js / Express / MongoDB</div>
+          <div style="margin-top:8px" class="bar"><span style="width:70%"></span></div>
+        </div>
+        <div class="skill">
+          <h4>Tools</h4>
+          <div style="color:var(--muted)">Git / Figma / VS Code / Netlify</div>
+          <div style="margin-top:8px" class="bar"><span style="width:80%"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <h3 style="margin-top:18px">المشاريع</h3>
+      <p style="color:var(--muted);margin-top:6px">بعض الأعمال التي أنجزتها — انقر على أي مشروع لرؤية التفاصيل (مثال تجريبي).</p>
+
+      <div class="projects-grid">
+        <div class="project card" onclick="openProject('مشروع 1','موقع تعريفي لشركة تصميم مع نظام عرض أعمال سريع','https://example.com')">
+          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Project 1">
+          <div class="meta">
+            <strong>مشروع 1</strong>
+            <div style="font-size:13px">موقع تعريفي — تصميم عصري وسرعة تحميل عالية</div>
+          </div>
+        </div>
+
+        <div class="project card" onclick="openProject('مشروع 2','متجر إلكتروني تجريبي مع صفحة الدفع','https://example.com')">
+          <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Project 2">
+          <div class="meta">
+            <strong>مشروع 2</strong>
+            <div style="font-size:13px">E‑commerce — تجربة مستخدم مبسطة</div>
+          </div>
+        </div>
+
+        <div class="project card" onclick="openProject('مشروع 3','واجهة لوحة تحكم إدارية لصفحات المحتوى','https://example.com')">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Project 3">
+          <div class="meta">
+            <strong>مشروع 3</strong>
+            <div style="font-size:13px">Dashboard — نظام إدارة محتوى</div>
+          </div>
+        </div>
+
+        <div class="project card" onclick="openProject('مشروع 4','صفحة هبوط لمنتج بتأثيرات CSS متقدمة','https://example.com')">
+          <img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Project 4">
+          <div class="meta">
+            <strong>مشروع 4</strong>
+            <div style="font-size:13px">Landing Page — تحويل الزوار إلى عملاء</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="card" style="margin-top:18px">
+      <h3>تواصل معي</h3>
+      <p style="color:var(--muted);margin-top:6px">هل لديك مشروع؟ أرسل لي رسالة وسأرد بأقرب وقت.</p>
+
+      <form class="contact-form" onsubmit="submitForm(event)">
+        <input type="text" id="name" placeholder="اسمك" required />
+        <input type="email" id="email" placeholder="بريدك الإلكتروني" required />
+        <textarea id="message" placeholder="رسالتك" required></textarea>
+        <button class="btn primary" type="submit" style="grid-column:1/-1;justify-self:end">إرسال</button>
+      </form>
+
+      <div style="margin-top:12px;color:var(--muted)">
+        <div>أو تواصل عبر: <a href="mailto:you@example.com" style="color:var(--gold);text-decoration:none">you@example.com</a></div>
+        <div style="margin-top:6px">روابط: <a href="#" style="color:var(--muted);text-decoration:none">GitHub</a> • <a href="#" style="color:var(--muted);text-decoration:none">LinkedIn</a></div>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> مازن — Web Developer. كل الحقوق محفوظة.
+    </footer>
+  </div>
+
+  <script>
+    // small helpers
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function toggleNav(){
+      const nav = document.getElementById('navlist');
+      if(nav.style.display === 'flex') nav.style.display = '';
+      else nav.style.display = 'flex';
+      nav.style.flexDirection = 'column';
+      nav.style.background = 'var(--card)';
+      nav.style.padding = '10px';
+      nav.style.borderRadius = '10px';
+    }
+
+    function downloadCV(e){
+      e.preventDefault();
+      // Replace with real link to your CV file
+      const link = document.createElement('a');
+      link.href = '#';
+      link.download = 'Mazen-CV.pdf';
+      alert('ضع رابط ملف السيرة الذاتية في دالة downloadCV() داخل الكود.');
+    }
+
+    function openProject(title,desc,url){
+      // بسيط: عرض نافذة منبثقة. يمكنك استبداله بمودال جميل
+      const open = confirm(title + '\n\n' + desc + '\n\nهل تود فتح العرض التجريبي؟');
+      if(open && url) window.open(url,'_blank');
+    }
+
+    function submitForm(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const msg = document.getElementById('message').value.trim();
+      if(!name || !email || !msg) return alert('من فضلك اكمل الحقول');
+      // هنا تأخذ البيانات ثم ترسلها لخادم أو تستخدم mailto
+      const mailto = `mailto:you@example.com?subject=${encodeURIComponent('رسالة من '+name)}&body=${encodeURIComponent(msg+'\n\n'+email)}`;
+      window.location.href = mailto;
+    }
+
+    // smooth scroll for links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',function(e){
+        const target = document.querySelector(this.getAttribute('href'));
+        if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth',block:'start'});} 
+      })
+    })
+  </script>
+</body>
+</html>
